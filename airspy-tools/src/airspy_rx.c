@@ -434,6 +434,7 @@ int rx_callback(airspy_transfer_t* transfer)
 
     if(pt_rx_buffer != NULL)
     {
+      //printf("bytes to write is %d\n", bytes_to_write);
       bytes_written = fwrite(pt_rx_buffer, 1, bytes_to_write, fd);
       // write a multi part message to the zmq socket
       // first the time the samples were collected
@@ -881,8 +882,8 @@ int main(int argc, char** argv)
   assert (rc == 0);
   // bind the socket
   rc = zmq_bind (zmq_sender, zmq_pub_url);
-  assert(rc);
-  printf("ZeroMQ setup and socket bound to %s", zmq_pub_url);
+  //assert(rc);
+  printf("ZeroMQ setup and socket bound to %s\n", zmq_pub_url);
 
   fd = fopen(path, "wb");
   if( fd == NULL ) {
